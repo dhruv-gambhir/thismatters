@@ -2,11 +2,12 @@
 
 import { login } from "../auth";
 import { useState } from "react";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const router = useRouter();
 
     const handleLogIn = async (event) => {
         event.preventDefault();
@@ -14,6 +15,7 @@ function Login() {
         try {
             const user = await login(email, password);
             alert("Logged in user:", user);
+            router.push("/home");
         } catch (error) {
             alert("Login error:", error.message);
         }
