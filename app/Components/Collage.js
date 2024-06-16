@@ -1,10 +1,8 @@
-"use client";
-import { useState } from "react";
-
-import Image from "next/image";
-
-function Collage() {
-    const [image, setImage] = useState("/images/1.jpg");
-    return <Image src={image} alt="image" height="400" width="400" />;
+export default function Collage() {
+    return (
+        <video width="200" autoPlay loop muted>
+            <source src="/images/3.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+        </video>
+    );
 }
-export default Collage;

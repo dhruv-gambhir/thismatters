@@ -1,4 +1,4 @@
-import "./css/typewriter.css";
+import "./CSS/typewriter.css";
 
 import Login from "./Components/Login";
 import Collage from "./Components/Collage";
@@ -10,6 +10,7 @@ export default function Home() {
             <Title />
 
             <div className="flex flex-row m-8">
+                <Collage />
                 <Login />
             </div>
             <div className="text-3xl font-mono typewriter">

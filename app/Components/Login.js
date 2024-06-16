@@ -1,6 +1,6 @@
 "use client";
 
-import { login } from "../auth";
+import { login } from "../Authentication/auth";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
@@ -14,7 +14,6 @@ function Login() {
 
         try {
             const user = await login(email, password);
-            alert("Logged in user:", user);
             router.push("/home");
         } catch (error) {
             alert("Login error:", error.message);
