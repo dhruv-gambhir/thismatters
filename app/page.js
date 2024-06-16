@@ -1,4 +1,4 @@
-import "./CSS/typewriter.css";
+import "./css/typewriter.css";
 
 import Login from "./Components/Login";
 import Collage from "./Components/Collage";
