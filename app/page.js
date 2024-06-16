@@ -10,7 +10,6 @@ export default function Home() {
             <Title />
 
             <div className="flex flex-row m-8">
-                <Collage />
                 <Login />
             </div>
             <div className="text-3xl font-mono typewriter">
