@@ -1,6 +1,7 @@
 import Image from "next/image";
 
 import LikeButton from "./LikeButton";
+import ReplyButton from "./ReplyButton";
 
 export default function Post({ username, textContent, imgSource }) {
     return (
@@ -15,7 +16,10 @@ export default function Post({ username, textContent, imgSource }) {
                 alt="post image"
                 className="p-4"
             />
-            <LikeButton />
+            <div className="flex flex-row">
+                <LikeButton />
+                <ReplyButton />
+            </div>
         </div>
     );
 }
