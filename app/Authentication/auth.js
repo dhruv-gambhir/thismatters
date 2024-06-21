@@ -21,8 +21,6 @@ export const login = async (email, password) => {
 };
 
 export const signup = async (email, password) => {
-    addUserToDB();
-
     try {
         const userCredential = await createUserWithEmailAndPassword(
             auth,
