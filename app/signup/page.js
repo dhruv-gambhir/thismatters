@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { signup } from "../Authentication/auth.js";
 
 import Title from "../Components/Title.js";
 

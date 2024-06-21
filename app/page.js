@@ -3,13 +3,14 @@
 import SideBar from "./Components/SideBar";
 import Post from "@/app/Components/Post";
 import Image from "next/image";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
     const isLoggedIn = true;
+    const router = useRouter;
 
     if (!isLoggedIn) {
-        redirect("/login");
+        router.push("/login");
         return null;
     }
     return (

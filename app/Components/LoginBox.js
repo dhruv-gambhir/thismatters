@@ -14,7 +14,7 @@ export default function LoginBox() {
 
         try {
             const user = await login(email, password);
-            router.push("/home");
+            router.push("/");
         } catch (error) {
             alert("Login error:", error.message);
         }
