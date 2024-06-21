@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 
-export default function Title() {
+export default function LikeButton() {
     const [heart, setHeart] = useState("/heart.png");
 
     const handleHeartClick = () => {
@@ -15,8 +15,7 @@ export default function Title() {
     };
 
     return (
-        <div className="flex flex-row items-center justify-center m-8">
-            <h1 className="font-bold pr-2">This Matters</h1>
+        <div className="items-center justify-center ml-4">
             <button onClick={handleHeartClick}>
                 <Image src={heart} height="15" width="15" alt="heart" />
             </button>

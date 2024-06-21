@@ -1,15 +1,21 @@
 import Image from "next/image";
 
-export default function Post() {
+import LikeButton from "./LikeButton";
+
+export default function Post({ username, textContent, imgSource }) {
     return (
-        <div className="border border-black border-1 p-4 m-4">
-            <h1>Post</h1>
+        <div className="border-dotted border-black border-2 m-4">
+            <h1 className="pl-2">{username}</h1>
+            <div className="border border-1 border-black w-full"></div>
+            <text> {textContent}</text>
             <Image
-                src="/images/1.jpg"
+                src={imgSource}
                 height="400"
                 width="400"
                 alt="post image"
+                className="p-4"
             />
+            <LikeButton />
         </div>
     );
 }

@@ -15,15 +15,23 @@ export default function Home() {
     }
     return (
         <div className="min-h-screen flex flex-row">
-            <SideBar />
-            <div className="min-h-screen w-10/12 flex flex-col items-center">
+            <SideBar style={{ overflowY: "hidden" }} />
+            <div className="min-h-screen w-10/12 flex flex-col items-center overflow-y-auto">
                 <div className="flex flex-row">
                     <h1 className="font-bold m-4 ">Home</h1>
                 </div>
                 <button className="h-10/12 w-10/12 border-dashed border-2 border-black rounded">
                     + Add Post
                 </button>
-                <Post />
+                <Post
+                    username="dhhrooov"
+                    textContent="Hello this is dhriv. This is my diwali post."
+                    imgSource="/images/1.jpg"></Post>
+
+                <Post
+                    username="wtfvansh"
+                    textContent="Hello this is vansh. Idk why im posting this."
+                    imgSource="/home.png"></Post>
             </div>
         </div>
     );
