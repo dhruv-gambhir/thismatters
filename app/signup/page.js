@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation";
 function SignUp() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [username, setUsername] = useState("");
 
     const router = useRouter();
 
@@ -53,6 +54,13 @@ function SignUp() {
                     </button>
                 </div>
             */}
+                <input
+                    type="username"
+                    placeholder="Username"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    className="m-2 bg-pink-100 rounded pl-1"
+                    style={{ height: "10%", width: "80%" }}></input>
 
                 <div className="flex flex-col justify-center items-center">
                     <button

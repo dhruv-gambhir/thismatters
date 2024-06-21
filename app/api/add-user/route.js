@@ -6,7 +6,7 @@ import { sql } from "@vercel/postgres";
 export async function GET() {
     try {
         const addUser =
-            await sql`INSERT INTO users (email,password) VALUES ('dhruv@vercel.com', 'vercel123')`;
+            await sql`INSERT INTO users (email,username) VALUES ('dhruv@vercel.com', 'dhhrooov')`;
         return NextResponse.json(addUser);
     } catch {
         return NextResponse.json("User exists elready");
