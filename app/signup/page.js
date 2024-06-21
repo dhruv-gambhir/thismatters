@@ -3,16 +3,20 @@
 import { useState } from "react";
 
 import Title from "../Components/Title.js";
+import { signup } from "../Authentication/auth.js";
+import { useRouter } from "next/navigation";
 
 function SignUp() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
+    const router = useRouter();
+
     const handleSignUp = async (event) => {
         event.preventDefault();
         try {
             const user = await signup(email, password);
-            alert("Signed up user:", user);
+            router.push("/login");
         } catch (error) {
             alert("Signup error:", error.message);
         }
