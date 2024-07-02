@@ -16,7 +16,7 @@ export default function Title() {
 
     return (
         <div className="flex flex-row items-center justify-center m-8">
-            <h1 className="font-bold pr-2">This Matters</h1>
+            <h1 className="font-bold pr-2">this matters</h1>
             <button onClick={handleHeartClick}>
                 <Image src={heart} height="15" width="15" alt="heart" />
             </button>

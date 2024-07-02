@@ -65,7 +65,7 @@ function SignUp() {
                 <div className="flex flex-col justify-center items-center">
                     <button
                         type="submit"
-                        className=" bg-pink-100 w-16 m-4 rounded">
+                        className="bg-pink-100 w-16 m-4 rounded">
                         Sign Up
                     </button>
 
