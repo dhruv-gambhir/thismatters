@@ -28,7 +28,10 @@ export default function SideBar() {
                 >
                     Post
                 </button>
-                <button className="border-solid border-2 border-black rounded m-2 w-10/12">
+                <button
+                    className="border-solid border-2 border-black rounded m-2 w-10/12"
+                    onClick={() => router.push("/friends")}
+                >
                     Friends
                 </button>
                 <button

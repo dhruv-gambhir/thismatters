@@ -29,6 +29,7 @@ export default function Login() {
                 const data = await response.json();
                 if (data.username) {
                     zLogin(data.username);
+                    router.push("/");
                 } else {
                     console.error("Username not found");
                 }
@@ -49,7 +50,6 @@ export default function Login() {
         try {
             const user = await login(email, password);
             addUserToState(email);
-            router.push("/");
         } catch (error) {
             alert("Login error:", error.message);
         }
@@ -68,7 +68,10 @@ export default function Login() {
                     className="bg-white rounded m-8 flex flex-col justify-center items-center w-2/6 h-4/6 relative"
                     onSubmit={handleLogIn}
                 >
-                    <h1 className="absolute top-5 left-5 text-xl text-black"> Login </h1>
+                    <h1 className="absolute top-5 left-5 text-xl text-black">
+                        {" "}
+                        Login{" "}
+                    </h1>
                     <input
                         type="email"
                         placeholder="Email"
