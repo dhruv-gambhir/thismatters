@@ -6,12 +6,17 @@ export default function NewPost() {
                 <input
                     type="title"
                     placeholder="Title"
-                    className="m-2 bg-pink-100 rounded pl-1 w-5/6"></input>
+                    className="m-2 bg-pink-100 rounded pl-1 w-5/6"
+                ></input>
                 <textarea
-    placeholder="Text"
-    className="m-2 bg-pink-100 rounded pl-1 w-5/6 h-40"
-></textarea>
-
+                    placeholder="Text"
+                    className="m-2 bg-pink-100 rounded pl-1 w-5/6 h-40"
+                ></textarea>
+                <input
+                    type="file"
+                    accept="image/*"
+                    className="m-2 bg-pink-100 rounded pl-1 w-5/6"
+                />
                 <div className="flex flex-row">
                     <button className="bg-pink-100 w-32 m-4 rounded">
                         Add Photos

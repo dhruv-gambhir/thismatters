@@ -3,17 +3,48 @@
 import { login } from "../Authentication/auth";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import useStore from "../store";
 
 export default function LoginBox() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const router = useRouter();
+    const { zLogin } = useStore();
+
+    const addUserToState = async (email) => {
+        try {
+            const response = await fetch("/api/get-username-from-email", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ email }),
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                if (data.username) {
+                    zLogin(data.username);
+                } else {
+                    console.error("Username not found");
+                }
+            } else {
+                console.error("Failed to fetch username");
+            }
+        } catch (error) {
+            console.error(
+                "An error occurred while fetching the username:",
+                error
+            );
+        }
+    };
 
     const handleLogIn = async (event) => {
         event.preventDefault();
 
         try {
             const user = await login(email, password);
+            addUserToState(email);
             router.push("/");
         } catch (error) {
             alert("Login error:", error.message);
@@ -23,21 +54,24 @@ export default function LoginBox() {
     return (
         <form
             className="bg-white h-64 w-64 rounded m-8 flex flex-col justify-center items-center"
-            onSubmit={handleLogIn}>
+            onSubmit={handleLogIn}
+        >
             <input
                 type="email"
                 placeholder="Email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="m-2 bg-pink-100 rounded pl-1"
-                style={{ height: "10%", width: "80%" }}></input>
+                style={{ height: "10%", width: "80%" }}
+            ></input>
             <input
                 type="password"
                 placeholder="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 className="m-2 bg-pink-100 rounded pl-1"
-                style={{ height: "10%", width: "80%" }}></input>
+                style={{ height: "10%", width: "80%" }}
+            ></input>
             {/* Money Button
                 <div className="bg-blue-100 w-12 rounded">
                     <button className="w-6 align-left p-1">
