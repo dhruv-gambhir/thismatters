@@ -2,7 +2,6 @@
 
 import SideBar from "./Components/SideBar";
 import Post from "@/app/Components/Post";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
 import useStore from "./store";
 
