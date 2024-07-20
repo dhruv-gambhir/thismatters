@@ -12,26 +12,35 @@ export default function SideBar() {
             <nav>
                 <button
                     className="border-solid border-2 border-black rounded m-2 w-10/12"
-                    onClick={() => router.push("/")}>
+                    onClick={() => router.push("/")}
+                >
                     Home
                 </button>
                 <button
                     className="border-solid border-2 border-black rounded m-2 w-10/12"
-                    onClick={() => router.push("/messages")}>
+                    onClick={() => router.push("/messages")}
+                >
                     Messages
                 </button>
-
+                <button
+                    className="border-solid border-2 border-black rounded m-2 w-10/12"
+                    onClick={() => router.push("/newpost")}
+                >
+                    Post
+                </button>
                 <button className="border-solid border-2 border-black rounded m-2 w-10/12">
                     Friends
                 </button>
                 <button
                     className="border-solid border-2 border-black rounded m-2 w-10/12"
-                    onClick={() => router.push("/profile")}>
+                    onClick={() => router.push("/profile")}
+                >
                     Profile
                 </button>
                 <button
                     className="border-solid border-2 border-black rounded m-2 w-10/12"
-                    onClick={() => router.push("/settings")}>
+                    onClick={() => router.push("/settings")}
+                >
                     Settings
                 </button>
             </nav>

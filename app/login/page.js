@@ -65,9 +65,10 @@ export default function Login() {
                     Your browser does not support the video tag.
                 </video>
                 <form
-                    className="bg-white rounded m-8 flex flex-col justify-center items-center w-2/6 h-4/6"
+                    className="bg-white rounded m-8 flex flex-col justify-center items-center w-2/6 h-4/6 relative"
                     onSubmit={handleLogIn}
                 >
+                    <h1 className="absolute top-5 left-5 text-xl text-black"> Login </h1>
                     <input
                         type="email"
                         placeholder="Email"
@@ -98,16 +99,16 @@ export default function Login() {
                     <div className="flex flex-col justify-center items-center">
                         <button
                             type="submit"
-                            className="bg-pink-100 w-16 m-4 rounded"
+                            className="bg-pink-100 w-16 m-4 rounded p-2"
                         >
                             Log In
                         </button>
 
-                        <a href="/signup" className="text-xs underline">
+                        <a href="/signup" className="text-lg underline">
                             New User? Sign Up
                         </a>
 
-                        <a href="/" className="text-xs underline">
+                        <a href="/" className="text-lg underline">
                             Forgot Password?
                         </a>
                     </div>

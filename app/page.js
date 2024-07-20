@@ -8,7 +8,6 @@ import useStore from "./store";
 
 export default function Home() {
     const { zIsLoggedIn } = useStore();
-    const { zUsername } = useStore();
     const router = useRouter();
 
     if (!zIsLoggedIn) {
@@ -24,13 +23,6 @@ export default function Home() {
                     <div className="flex flex-row">
                         <h1 className="font-bold m-4 ">Home</h1>
                     </div>
-                    <button
-                        className="h-10/12 w-10/12 border-dashed border-2 border-black rounded"
-                        onClick={() => router.push("/newpost")}
-                    >
-                        + Add Post
-                    </button>
-                    <h1>{zUsername}</h1>
                     <Post
                         username="dhhrooov"
                         textContent="Hello this is dhruv. This is my diwali post."
