@@ -12,12 +12,12 @@ export default function Profile() {
     useEffect(() => {
         async function fetchPosts() {
             const response = await fetch(
-                `/api/get-posts?username=${zUsername}`
+                `/api/get-my-posts?username=${zUsername}`
             );
             const data = await response.json();
             console.log(data); // Log the response to verify structure
             if (data.success) {
-                setPosts(data.posts.rows); // Adjusted to access rows array
+                setPosts(data.myposts.rows); // Adjusted to access rows array
             }
         }
         fetchPosts();
@@ -34,6 +34,7 @@ export default function Profile() {
                         <Post
                             key={post.id}
                             username={post.username}
+                            title={post.title}
                             textContent={post.text}
                             imgSource={post.images}
                         />

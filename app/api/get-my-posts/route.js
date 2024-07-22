@@ -8,11 +8,11 @@ export async function GET(req) {
     const username = searchParams.get("username");
 
     try {
-        const posts = await sql`
+        const myposts = await sql`
             SELECT id, username, title, text, images FROM posts
             WHERE username = ${username}
         `;
-        return NextResponse.json({ success: true, posts });
+        return NextResponse.json({ success: true, myposts });
     } catch (error) {
         console.error(error);
         return NextResponse.json({
