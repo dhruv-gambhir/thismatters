@@ -2,20 +2,22 @@
 
 import { useState } from "react";
 import SideBar from "../Components/SideBar";
+import useStore from "../store";
 
 export default function NewPost() {
     const [title, setTitle] = useState("");
     const [text, setText] = useState("");
     const [images, setImages] = useState([]);
+    const { zUsername } = useStore;
 
-    async function addPost(username, title, text, images) {
+    async function addPost() {
         const response = await fetch("/api/add-post", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                username: username,
+                username: zUsername,
                 title: title,
                 text: text,
                 images: images,
@@ -82,6 +84,7 @@ export default function NewPost() {
                     <button
                         type="submit"
                         className="bg-pink-100 w-32 h-8 m-4 rounded"
+                        onClick={addPost}
                     >
                         Submit
                     </button>
