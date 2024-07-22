@@ -15,6 +15,7 @@ export default function Profile() {
                 `/api/get-posts?username=${zUsername}`
             );
             const data = await response.json();
+            console.log(data); // Log the response to verify structure
             if (data.success) {
                 setPosts(data.posts.rows); // Adjusted to access rows array
             }
@@ -33,7 +34,6 @@ export default function Profile() {
                         <Post
                             key={post.id}
                             username={post.username}
-                            title={post.title}
                             textContent={post.text}
                             imgSource={post.images}
                         />
