@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import SideBar from "../Components/SideBar";
 import useStore from "../store";
 
@@ -8,7 +8,7 @@ export default function NewPost() {
     const [title, setTitle] = useState("");
     const [text, setText] = useState("");
     const [images, setImages] = useState([]);
-    const { zUsername } = useStore;
+    const { zUsername } = useStore();
 
     async function addPost() {
         const response = await fetch("/api/add-post", {
@@ -26,6 +26,12 @@ export default function NewPost() {
 
         const data = await response.json();
         console.log(data);
+
+        if (data.success) {
+            setTitle("");
+            setText("");
+            setImages([]);
+        }
     }
 
     function handleImageChange(event) {
@@ -33,13 +39,17 @@ export default function NewPost() {
         const imageArray = Array.from(files).map((file) =>
             URL.createObjectURL(file)
         );
-        setImages(imageArray);
+        setImages((prevImages) => [...prevImages, ...imageArray]);
+
+        // Cleanup URLs when component unmounts or images change
+        return () => {
+            imageArray.forEach((url) => URL.revokeObjectURL(url));
+        };
     }
 
     function handleSubmit(event) {
         event.preventDefault();
-        const username = "current_user"; // Replace with actual username logic
-        addPost(username, title, text, images);
+        addPost();
     }
 
     return (
@@ -84,7 +94,6 @@ export default function NewPost() {
                     <button
                         type="submit"
                         className="bg-pink-100 w-32 h-8 m-4 rounded"
-                        onClick={addPost}
                     >
                         Submit
                     </button>

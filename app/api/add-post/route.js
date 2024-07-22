@@ -10,7 +10,7 @@ export async function POST(req) {
         // Insert the post into the database
         const addPost = await sql`
             INSERT INTO posts (username, title, text, images)
-            VALUES (${username}, ${title}, ${text}, ${sql.array(images)})
+            VALUES (${username}, ${title}, ${text}, ${images})
         `;
 
         return NextResponse.json({ success: true, data: addPost });
