@@ -10,7 +10,7 @@ export async function GET(req) {
     try {
         const myposts = await sql`
             SELECT id, username, title, text, images FROM posts
-            WHERE username = ${username}
+            WHERE username = ${username} ORDER BY id desc
         `;
         return NextResponse.json({ success: true, myposts });
     } catch (error) {
