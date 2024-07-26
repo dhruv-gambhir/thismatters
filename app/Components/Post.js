@@ -6,9 +6,12 @@ export default function Post({ username, title, textContent, imgSource }) {
     const images = Array.isArray(imgSource) ? imgSource : [];
 
     return (
-        <div className="border-dotted border-black border-2 m-4 p-4">
-            <h1 className="pl-2">{username}</h1>
-            <div className="border border-1 border-black w-full mb-2"></div>
+        <main className="border-dotted border-black border-2 m-4 p-4 w-5/6">
+            <div className="flex w-full border border-2 border-black">
+                <h1 className="p-2">{username}</h1>
+                <button className="p-2 right-2">yo</button>
+            </div>
+
             <p>{title}</p>
             <p>{textContent}</p>
             <div className="flex flex-wrap justify-center">
@@ -31,6 +34,6 @@ export default function Post({ username, title, textContent, imgSource }) {
                 <LikeButton />
                 <ReplyButton />
             </div>
-        </div>
+        </main>
     );
 }
