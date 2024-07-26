@@ -13,7 +13,7 @@ export default function Home() {
 
     useEffect(() => {
         async function fetchPosts() {
-            const response = await fetch(`/api/get-all-posts`);
+            const response = await fetch(`/api/get-posts`);
             const data = await response.json();
             console.log(data);
             if (data.success) {
@@ -21,7 +21,7 @@ export default function Home() {
             }
         }
         fetchPosts();
-    }, []);
+    }, [router]);
 
     if (!zIsLoggedIn) {
         router.push("/login");
