@@ -20,12 +20,6 @@ export default function SideBar() {
                 </button>
                 <button
                     className="border-solid border-2 border-black rounded m-2 w-10/12"
-                    onClick={() => router.push("/messages")}
-                >
-                    Messages
-                </button>
-                <button
-                    className="border-solid border-2 border-black rounded m-2 w-10/12"
                     onClick={() => router.push("/newpost")}
                 >
                     Post

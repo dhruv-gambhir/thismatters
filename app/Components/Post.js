@@ -7,9 +7,9 @@ export default function Post({ username, title, textContent, imgSource }) {
 
     return (
         <main className="border-dotted border-black border-2 m-4 p-4 w-5/6">
-            <div className="flex w-full border border-2 border-black">
+            <div className="flex w-full border-2 border-black justify-between">
                 <h1 className="p-2">{username}</h1>
-                <button className="p-2 right-2">yo</button>
+                <button className="p-2">...</button>
             </div>
 
             <p>{title}</p>
