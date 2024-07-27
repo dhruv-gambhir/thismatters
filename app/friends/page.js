@@ -56,7 +56,7 @@ export default function Friends() {
                         placeholder="Search"
                         value={friendSearch}
                         onChange={(e) => setFriendSearch(e.target.value)}
-                        className="w-5/6 bg-pink-100 border border-black border-1 rounded m-4"
+                        className="w-5/6 bg-pink-100 border border-black border-1 rounded m-4 px-2"
                     ></input>
 
                     {filteredUsers.length > 0 ? (

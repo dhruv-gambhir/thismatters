@@ -5,7 +5,7 @@ import useStore from "../store";
 export default function SendRequestComponent({ username }) {
     const { zUsername } = useStore();
 
-    async function addRequest(sender, reciever) {
+    async function addRequest(sender, receiver) {
         const response = await fetch("/api/send-request", {
             method: "POST",
             headers: {
@@ -13,10 +13,11 @@ export default function SendRequestComponent({ username }) {
             },
             body: JSON.stringify({
                 sender: sender,
-                reciever: reciever,
+                receiver: receiver,
             }),
         });
         const data = await response.json();
+        console.log(data);
     }
 
     return (

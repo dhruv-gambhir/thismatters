@@ -5,10 +5,10 @@ import { sql } from "@vercel/postgres";
 
 export async function POST(req) {
     try {
-        const { sender, reciever } = await req.json();
+        const { sender, receiver } = await req.json();
 
         const addrequest =
-            await sql`INSERT INTO friend_requests (sender, receiver) VALUES(${sender}, ${reciever})`;
+            await sql`INSERT INTO friend_requests (sender, receiver) VALUES (${sender}, ${receiver})`;
 
         return NextResponse.json({ success: true, data: addrequest });
     } catch (error) {

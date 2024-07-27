@@ -5,7 +5,7 @@ import useStore from "../store";
 export default function AddFriendComponent({ username }) {
     const { zUsername } = useStore();
 
-    async function addFriend(sender, reciever) {
+    async function addFriend(sender, receiver) {
         const response = await fetch("/api/add-friend", {
             method: "POST",
             headers: {
@@ -13,21 +13,21 @@ export default function AddFriendComponent({ username }) {
             },
             body: JSON.stringify({
                 sender: sender,
-                reciever: reciever,
+                receiver: receiver,
             }),
         });
         const data = await response.json();
     }
 
-    async function removeRequest(sender, reciever) {
-        const response = await fetch("/api/remove-request", {
+    async function removeRequest(sender, receiver) {
+        const response = await fetch("/api/remove-friend-request", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
                 sender: sender,
-                reciever: reciever,
+                receiver: receiver,
             }),
         });
         const data = await response.json();
@@ -40,7 +40,7 @@ export default function AddFriendComponent({ username }) {
                 <button
                     onClick={() => {
                         addFriend(username, zUsername);
-                        removeRequest(username, zUsername);
+                        removeRequest(zUsername, username);
                     }}
                     className="absolute right-2"
                 >
