@@ -8,16 +8,28 @@ import useStore from "../store";
 import AddFriendComponent from "../Components/AddFriendComponent";
 
 export default function Friends() {
+    const [myFriends, setMyFriends] = useState([]);
     const [users, setUsers] = useState([]);
     const [requests, setRequests] = useState([]);
     const [friendSearch, setFriendSearch] = useState("");
     const { zUsername } = useStore();
 
     useEffect(() => {
+        async function fetchFriends() {
+            const response = await fetch(
+                `/api/get-my-friends?username=${zUsername}`
+            );
+            const data = await response.json();
+            console.log("friends", data.myfriends.rows);
+            if (data.success) {
+                setMyFriends(data.myfriends.rows);
+            }
+        }
+        fetchFriends();
+
         async function fetchUsers() {
             const response = await fetch(`/api/get-all-users`);
             const data = await response.json();
-            console.log(data);
             if (data.success) {
                 setUsers(data.allusers.rows);
             }
@@ -32,7 +44,6 @@ export default function Friends() {
             const data = await response.json();
             console.log(data);
             if (data.success) {
-                console.log(data.data.rows);
                 setRequests(data.data.rows);
             }
         }
@@ -49,8 +60,28 @@ export default function Friends() {
             <SideBar />
             <div className="w-1/6" />
             <div className="flex flex-row items-center w-5/6 mx-4">
+                <div className="flex flex-col h-5/6 w-1/2">
+                    <div className="flex flex-col h-2/6 w-5/6 items-center border border-black m-4 overflow-y-auto">
+                        <h1>Friends</h1>
+                        {myFriends.length > 0 ? (
+                            myFriends.map((user) => <p>{user.sender}</p>)
+                        ) : (
+                            <p>No friends to show</p>
+                        )}
+                    </div>
+                    <div className="flex flex-col h-2/6 w-5/6 items-center border border-black m-4 overflow-y-auto">
+                        <h1>Requests</h1>
+                        {requests.length > 0 ? (
+                            requests.map((user) => (
+                                <AddFriendComponent username={user.sender} />
+                            ))
+                        ) : (
+                            <p>No users to show</p>
+                        )}
+                    </div>
+                </div>
                 <div className="flex flex-col h-5/6 w-1/2 items-center border border-black m-4 overflow-y-auto">
-                    <h1>Friends</h1>
+                    <h1>Find Friends</h1>
                     <input
                         type="text"
                         placeholder="Search"
@@ -62,16 +93,6 @@ export default function Friends() {
                     {filteredUsers.length > 0 ? (
                         filteredUsers.map((user) => (
                             <SendRequestComponent username={user.username} />
-                        ))
-                    ) : (
-                        <p>No users to show</p>
-                    )}
-                </div>
-                <div className="flex flex-col h-5/6 w-1/2 items-center border border-black m-4 overflow-y-auto">
-                    <h1>Requests</h1>
-                    {filteredUsers.length > 0 ? (
-                        requests.map((user) => (
-                            <AddFriendComponent username={user.sender} />
                         ))
                     ) : (
                         <p>No users to show</p>
