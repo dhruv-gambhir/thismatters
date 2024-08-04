@@ -52,9 +52,22 @@ export default function Friends() {
         fetchRequests();
     }, []);
 
-    const filteredUsers = users.filter((user) =>
-        user.username.toLowerCase().includes(friendSearch.toLowerCase())
-    );
+    const filteredUsers = users.filter((user) => {
+        const friendUsernames = new Set(
+            myFriends.map((friend) =>
+                friend.sender === zUsername ? friend.receiver : friend.sender
+            )
+        );
+        const requestUsernames = new Set(
+            requests.map((request) => request.sender)
+        );
+
+        return (
+            !friendUsernames.has(user.username) &&
+            !requestUsernames.has(user.username) &&
+            user.username.toLowerCase().includes(friendSearch.toLowerCase())
+        );
+    });
 
     return (
         <main className="min-h-screen flex flex-row">

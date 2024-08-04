@@ -6,14 +6,16 @@ export default function Post({ username, title, textContent, imgSource }) {
     const images = Array.isArray(imgSource) ? imgSource : [];
 
     return (
-        <main className="border-dotted border-black border-2 m-4 p-4 w-5/6">
-            <div className="flex w-full border-2 border-black justify-between">
-                <h1 className="p-2">{username}</h1>
-                <button className="p-2">...</button>
+        <main className="border-dotted border-black border-2 m-4 w-5/6">
+            <div className="flex w-full justify-between items-center px-4">
+                <h1 className="flex px-4 border border-black rounded-full items-center justify-center">
+                    {username}
+                </h1>
+                <p className="text-bold text-xl">{title}</p>
+                <button className="p-2 text-bold text-xl">...</button>
             </div>
-
-            <p>{title}</p>
-            <p>{textContent}</p>
+            <hr className="border-black border-dotted" />
+            <p className="m-8">{textContent}</p>
             <div className="flex flex-wrap justify-center">
                 {images.length > 0 ? (
                     images.map((src, index) => (

@@ -13,7 +13,7 @@ export async function POST(req) {
             DELETE FROM friend_requests WHERE sender = ${receiver} AND receiver = ${sender} RETURNING *;
 
         `;
-            
+
         console.log("deleted friend", result);
 
         if (result.rowCount === 0) {
