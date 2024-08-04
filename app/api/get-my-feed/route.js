@@ -4,14 +4,20 @@ import { NextResponse } from "next/server";
 import { sql } from "@vercel/postgres";
 import { unstable_noStore as noStore } from "next/cache";
 
-export async function GET() {
+export async function GET(req) {
     noStore();
+    const { searchParams } = new URL(req.url);
+    const username = searchParams.get("username");
     try {
-        const allposts = await sql`
-            SELECT id, username, title, text, images FROM posts
-            ORDER BY id desc
+        const myfeed = await sql`
+            SELECT p.id, p.username, p.title, p.text, p.images
+            FROM posts p
+            JOIN friends f ON (f.sender = p.username OR f.receiver = p.username)
+            WHERE (f.sender = ${username} OR f.receiver = ${username})
+            AND p.username != ${username}
+            ORDER BY p.id DESC;
         `;
-        return NextResponse.json({ success: true, allposts });
+        return NextResponse.json({ success: true, myfeed });
     } catch (error) {
         console.error(error);
         return NextResponse.json({

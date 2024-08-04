@@ -76,7 +76,7 @@ export default function Friends() {
             <div className="flex flex-row items-center w-5/6 mx-4">
                 <div className="flex flex-col h-5/6 w-1/2">
                     <div className="flex flex-col h-2/6 w-5/6 items-center border border-black m-4 overflow-y-auto">
-                        <h1>Friends</h1>
+                        <h1 className="text-bold my-4">Friends</h1>
                         {myFriends.length > 0 ? (
                             myFriends.map((user) => (
                                 <RemoveFriendomponent
@@ -92,7 +92,7 @@ export default function Friends() {
                         )}
                     </div>
                     <div className="flex flex-col h-2/6 w-5/6 items-center border border-black m-4 overflow-y-auto">
-                        <h1>Requests</h1>
+                        <h1 className="text-bold my-4">Requests</h1>
                         {requests.length > 0 ? (
                             requests.map((user) => (
                                 <AddFriendComponent username={user.sender} />
@@ -103,7 +103,7 @@ export default function Friends() {
                     </div>
                 </div>
                 <div className="flex flex-col h-5/6 w-1/2 items-center border border-black m-4 overflow-y-auto">
-                    <h1>Find Friends</h1>
+                    <h1 className="text-bold my-4">Find Friends</h1>
                     <input
                         type="text"
                         placeholder="Search"

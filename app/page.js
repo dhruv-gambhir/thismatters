@@ -7,17 +7,19 @@ import useStore from "./store";
 import { useEffect, useState } from "react";
 
 export default function Home() {
-    const { zIsLoggedIn } = useStore();
+    const { zIsLoggedIn, zUsername } = useStore();
     const router = useRouter();
     const [posts, setPosts] = useState([]);
 
     useEffect(() => {
         async function fetchPosts() {
-            const response = await fetch(`/api/get-all-posts`);
+            const response = await fetch(
+                `/api/get-my-feed?username=${zUsername}`
+            );
             const data = await response.json();
             console.log(data);
             if (data.success) {
-                setPosts(data.allposts.rows);
+                setPosts(data.myfeed.rows);
             }
         }
         fetchPosts();
