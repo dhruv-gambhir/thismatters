@@ -6,6 +6,7 @@ import SideBar from "../Components/SideBar";
 import SendRequestComponent from "../Components/SendRequestComponent";
 import useStore from "../store";
 import AddFriendComponent from "../Components/AddFriendComponent";
+import RemoveFriendomponent from "../Components/RemoveFriendComponent";
 
 export default function Friends() {
     const [myFriends, setMyFriends] = useState([]);
@@ -64,7 +65,15 @@ export default function Friends() {
                     <div className="flex flex-col h-2/6 w-5/6 items-center border border-black m-4 overflow-y-auto">
                         <h1>Friends</h1>
                         {myFriends.length > 0 ? (
-                            myFriends.map((user) => <p>{user.sender}</p>)
+                            myFriends.map((user) => (
+                                <RemoveFriendomponent
+                                    username={
+                                        user.sender == zUsername
+                                            ? user.receiver
+                                            : user.sender
+                                    }
+                                />
+                            ))
                         ) : (
                             <p>No friends to show</p>
                         )}

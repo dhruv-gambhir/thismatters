@@ -34,18 +34,27 @@ export default function AddFriendComponent({ username }) {
     }
 
     return (
-        <main className="w-4/6 scroll-y">
+        <main className="w-5/6 scroll-y">
             <div className="flex flex-row border border-dotted border-black border-1 rounded m-4 p-2 relative">
                 <h3>{username}</h3>
-                <button
-                    onClick={() => {
-                        addFriend(username, zUsername);
-                        removeRequest(zUsername, username);
-                    }}
-                    className="absolute right-2"
-                >
-                    Add Friend
-                </button>
+                <div className="flex flex-row absolute right-2">
+                    <button
+                        onClick={() => {
+                            addFriend(username, zUsername);
+                            removeRequest(zUsername, username);
+                        }}
+                    >
+                        Add Friend
+                    </button>
+                    <button
+                        className="mx-4 px-2 border border-black border-dotted rounded"
+                        onClick={() => {
+                            removeRequest(zUsername, username);
+                        }}
+                    >
+                        x
+                    </button>
+                </div>
             </div>
         </main>
     );
