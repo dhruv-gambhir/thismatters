@@ -16,10 +16,14 @@ export default function Settings() {
     return (
         <main className="min-h-screen flex flex-row">
             <SideBar />
-            <div className="w-1/6" />
-            <div className="flex flex-col items-center overflow-y-auto w-5/6">
-                <h1>Settings</h1>
-                <button onClick={Logout}>Logout</button>
+            <div className="w-1/6"/>
+            <div className="flex flex-col items-center overflow-y-auto w-5/6 mx-4">
+                <h1 className="mb-32">Settings</h1>
+                <div className="flex flex-col w-full items-center"> 
+                    <button className="w-5/6 border-2 border-black border-dotted m-4">Edit Profile</button>
+                    <button className="w-5/6 border-2 border-black border-dotted m-4">Change Password</button>
+                    <button onClick={Logout} className="w-5/6 border-2 border-black border-dotted m-4">Logout</button>
+                </div>
             </div>
         </main>
     );
