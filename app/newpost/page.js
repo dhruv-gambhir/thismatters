@@ -8,45 +8,85 @@ export default function NewPost() {
     const [title, setTitle] = useState("");
     const [text, setText] = useState("");
     const [images, setImages] = useState([]);
+    const [imageUrls, setImageUrls] = useState([]);
     const { zUsername } = useStore();
 
+    useEffect(() => {
+        // Clean up object URLs when the component is unmounted
+        return () => {
+            images.forEach((image) => URL.revokeObjectURL(image.preview));
+        };
+    }, [images]);
+
+    // Handle file input change
+    function handleImageChange(event) {
+        const files = event.target.files;
+        const newImages = Array.from(files).map((file) => ({
+            file,
+            preview: URL.createObjectURL(file),
+        }));
+        setImages((prevImages) => [...prevImages, ...newImages]);
+    }
+
+    // Upload images and add post
     async function addPost() {
-        const response = await fetch("/api/add-post", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                username: zUsername,
-                title: title,
-                text: text,
-                images: images,
-            }),
-        });
+        const urlArray = [];
 
-        const data = await response.json();
-        console.log(data);
+        for (const [index, { file }] of images.entries()) {
+            const formData = new FormData();
+            formData.append("file", file);
+            formData.append("filename", `${title}-${index}`);
 
-        if (data.success) {
-            setTitle("");
-            setText("");
-            setImages([]);
+            try {
+                const response = await fetch("/api/upload-image", {
+                    method: "POST",
+                    body: formData,
+                });
+
+                if (!response.ok) {
+                    throw new Error(
+                        `Error uploading image ${index}: ${response.statusText}`
+                    );
+                }
+                const { url } = await response.json();
+                urlArray.push(url);
+            } catch (error) {
+                console.error(error);
+            }
+        }
+
+        // Once all images are uploaded, proceed with adding the post
+        try {
+            const response = await fetch("/api/add-post", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    username: zUsername,
+                    title: title,
+                    text: text,
+                    images: JSON.stringify(urlArray), // Use urlArray directly
+                }),
+            });
+
+            const data = await response.json();
+            console.log(data);
+
+            if (data.success) {
+                setTitle("");
+                setText("");
+                setImages([]);
+                setImageUrls([]); // Clear the image URLs if needed
+            } else {
+                console.error("Failed to add post:", data.message);
+            }
+        } catch (error) {
+            console.error("An error occurred while adding the post:", error);
         }
     }
 
-    function handleImageChange(event) {
-        const files = event.target.files;
-        const imageArray = Array.from(files).map((file) =>
-            URL.createObjectURL(file)
-        );
-        setImages((prevImages) => [...prevImages, ...imageArray]);
-
-        // Cleanup URLs when component unmounts or images change
-        return () => {
-            imageArray.forEach((url) => URL.revokeObjectURL(url));
-        };
-    }
-
+    // Handle form submission
     function handleSubmit(event) {
         event.preventDefault();
         addPost();
@@ -102,7 +142,7 @@ export default function NewPost() {
                     {images.map((image, index) => (
                         <img
                             key={index}
-                            src={image}
+                            src={image.preview}
                             alt={`Preview ${index}`}
                             className="w-32 h-32 object-cover m-2 rounded"
                         />
