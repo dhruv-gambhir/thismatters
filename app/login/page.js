@@ -14,6 +14,12 @@ export default function Login() {
     const [password, setPassword] = useState("");
     const router = useRouter();
     const { zLogin } = useStore();
+    const [monkey, setMonkey] = useState(false);
+
+    const toggleMonkey = (event) => {
+        event.preventDefault();
+        setMonkey(!monkey);
+    };
 
     const addUserToState = async (email) => {
         try {
@@ -64,10 +70,7 @@ export default function Login() {
                     <source src="/images/3.mp4" type="video/mp4" />
                     Your browser does not support the video tag.
                 </video>
-                <form
-                    className="bg-white rounded m-8 flex flex-col justify-center items-center w-2/6 h-4/6 relative"
-                    onSubmit={handleLogIn}
-                >
+                <form className="bg-white rounded m-8 flex flex-col justify-center items-center w-2/6 h-4/6 relative">
                     <h1 className="absolute top-5 left-5 text-xl text-black">
                         {" "}
                         Login{" "}
@@ -77,32 +80,32 @@ export default function Login() {
                         placeholder="Email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        className="m-2 bg-pink-100 rounded pl-1"
-                        style={{ height: "10%", width: "80%" }}
+                        className="m-4 bg-pink-100 rounded pl-1 w-5/6 h-8"
                     />
-                    <input
-                        type="password"
-                        placeholder="Password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        className="m-2 bg-pink-100 rounded pl-1"
-                        style={{ height: "10%", width: "80%" }}
-                    />
-                    {/* Money Button
-                        <div className="bg-blue-100 w-12 rounded">
-                            <button className="w-6 align-left p-1">
-                                <Image src="/see_password.png" height="20" width="20" />
-                            </button>
-                            <button className="w-6 align-right p-1">
-                                <Image src="/hide_password.png" height="20" width="20" />
-                            </button>
-                        </div>
-                    */}
-
+                    <div className="flex flex-col relative justify-center w-5/6">
+                        <input
+                            type={monkey ? "text" : "password"}
+                            placeholder="Password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            className="bg-pink-100 rounded pl-1 w-full h-8"
+                        />
+                        <button
+                            onClick={toggleMonkey}
+                            className="absolute right-2 w-8"
+                        >
+                            {monkey ? (
+                                <img src="see_password.png" />
+                            ) : (
+                                <img src="hide_password.png" />
+                            )}
+                        </button>
+                    </div>{" "}
                     <div className="flex flex-col justify-center items-center">
                         <button
                             type="submit"
                             className="bg-pink-100 w-16 m-4 rounded p-2"
+                            onClick={handleLogIn}
                         >
                             Log In
                         </button>

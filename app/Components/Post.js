@@ -23,9 +23,7 @@ export default function Post({ username, title, textContent, imgSource }) {
                             key={index}
                             src={src}
                             alt={`post image ${index}`}
-                            height="400"
-                            width="400"
-                            className="m-2"
+                            className=" h-40 m-2"
                         />
                     ))
                 ) : (
