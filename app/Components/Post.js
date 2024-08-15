@@ -1,5 +1,6 @@
 import LikeButton from "./LikeButton";
 import ReplyButton from "./ReplyButton";
+import Username from "./Username";
 
 export default function Post({ username, title, textContent, imgSource }) {
     // Ensure imgSource is an array
@@ -8,9 +9,7 @@ export default function Post({ username, title, textContent, imgSource }) {
     return (
         <main className="border-dotted border-black border-2 m-4 w-5/6">
             <div className="flex w-full justify-between items-center px-4">
-                <h1 className="flex px-4 border border-black rounded-full items-center justify-center">
-                    {username}
-                </h1>
+                <Username username={username} />
                 <p className="text-bold text-xl">{title}</p>
                 <button className="p-2 text-bold text-xl">...</button>
             </div>

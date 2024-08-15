@@ -5,7 +5,7 @@ import SideBar from "../Components/SideBar";
 import Post from "../Components/Post";
 import useStore from "../store";
 
-export default function Profile() {
+export default function MyProfile() {
     const [posts, setPosts] = useState([]);
     const { zUsername } = useStore();
 

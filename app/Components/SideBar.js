@@ -39,7 +39,7 @@ export default function SideBar() {
             </nav>
             <button
                 className="border-solid border-2 border-black rounded my-8 w-10/12 h-16 flex items-center justify-center"
-                onClick={() => router.push("/profile")}
+                onClick={() => router.push("/myprofile")}
             >
                 {zUsername}
             </button>
