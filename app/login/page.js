@@ -91,6 +91,7 @@ export default function Login() {
                             className="bg-pink-100 rounded pl-1 w-full h-8"
                         />
                         <button
+                            type="button"
                             onClick={toggleMonkey}
                             className="absolute right-2 w-8"
                         >

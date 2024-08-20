@@ -1,6 +1,7 @@
 "use client";
 
 import useStore from "../store";
+import Username from "./Username";
 
 export default function RemoveFriendomponent({ username }) {
     const { zUsername } = useStore();
@@ -23,7 +24,7 @@ export default function RemoveFriendomponent({ username }) {
     return (
         <main className="w-5/6 scroll-y">
             <div className="flex flex-row border border-dotted border-black border-1 rounded m-4 p-2 relative">
-                <h3>{username}</h3>
+                <Username username={username} />
                 <button
                     className="absolute right-2"
                     onClick={() => {
