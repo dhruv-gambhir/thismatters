@@ -10,10 +10,24 @@ const useStore = create(
             zLogin: (username) =>
                 set({ zIsLoggedIn: true, zUsername: username }),
             zLogout: () => set({ zIsLoggedIn: false, zUsername: "" }),
+            zUpdateUsername: (username) => set({ zUsername: username }),
         }),
         {
             name: "thismatters-auth-storage", // unique name for this storage
-            storage: createJSONStorage(() => localStorage), // using localStorage
+            storage: createJSONStorage(() => {
+                if (typeof window !== "undefined") {
+                    return localStorage;
+                }
+                return {
+                    getItem: () => null,
+                    setItem: () => {},
+                    removeItem: () => {},
+                };
+            }),
+            onRehydrateStorage: () => (state) => {
+                state.setHasHydrated(true);
+            },
+            listenToStorageChanges: true,
         }
     )
 );
