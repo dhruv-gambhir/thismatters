@@ -5,13 +5,36 @@ import useStore from "../store";
 import { useState } from "react";
 
 export default function EditProfile() {
-    const { zUsername, zUpdateUsername } = useStore(); 
+    const { zUsername, zUpdateUsername } = useStore();
     const [username, setUsername] = useState(zUsername || "");
+    const [oldUsername, setOldUsername] = useState(zUsername || "");
 
-    const handleSave = () => {
+    const handleSave = async () => {
         if (username.trim()) {
-            zUpdateUsername(username); // Update username in the store
-            alert("Profile updated successfully!");
+            try {
+                const response = await fetch("/api/edit-user", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        oldUsername: oldUsername,
+                        newUsername: username,
+                    }),
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    zUpdateUsername(username);
+                    alert("Profile updated successfully!");
+                } else {
+                    alert("Failed to update profile: " + result.message);
+                }
+            } catch (error) {
+                console.error("Error updating profile:", error);
+                alert("An error occurred while updating the profile.");
+            }
         } else {
             alert("Username cannot be empty!");
         }
