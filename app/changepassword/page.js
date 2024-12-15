@@ -67,7 +67,7 @@ export default function ChangePassword() {
         </div>
         <button
           onClick={handleChangePassword}
-          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+          className="bg-transparent border border-black text-black px-4 py-2 rounded"
         >
           Update Password
         </button>
