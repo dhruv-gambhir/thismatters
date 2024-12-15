@@ -22,7 +22,10 @@ export default function ChangePassword() {
     try {
       await changePassword(currentPassword, newPassword);
       alert("Password updated successfully!");
-      // Optionally, you can redirect the user or reset the form here
+      // Optionally reset fields or redirect
+      setCurrentPassword("");
+      setNewPassword("");
+      setConfirmPassword("");
     } catch (error) {
       console.error("Error changing password:", error);
       alert(`Failed to update password: ${error.message}`);
@@ -32,7 +35,7 @@ export default function ChangePassword() {
   return (
     <main className="min-h-screen flex flex-row">
       <SideBar />
-            <div className="w-1/6"></div>
+      <div className="w-1/6"></div>
       <div className="flex-grow p-8">
         <h1 className="text-2xl font-bold mb-4">Change Password</h1>
         <div className="mb-4">
@@ -72,3 +75,4 @@ export default function ChangePassword() {
     </main>
   );
 }
+
