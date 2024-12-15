@@ -23,7 +23,7 @@ export default function Settings() {
                 <h1 className="mb-32">Settings</h1>
                 <div className="flex flex-col w-full items-center"> 
                     <button onClick={() => router.push("/editprofile")} className="w-5/6 border-2 border-black rounded m-4">Edit Profile</button>
-                    <button className="w-5/6 border-2 border-black rounded m-4">Change Password</button>
+                    <button onClick={() => router.push("/changepassword")} className="w-5/6 border-2 border-black rounded m-4">Change Password</button>
                     <button onClick={Logout} className="w-5/6 border-2 border-black rounded m-4">Logout</button>
                 </div>
             </div>
