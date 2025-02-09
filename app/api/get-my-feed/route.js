@@ -2,7 +2,7 @@
 
 import { NextResponse } from "next/server";
 import { sql } from "@vercel/postgres";
-import redis from "@/lib/redis";
+import redis from "@/app/lib/redis";
 import { unstable_noStore as noStore } from "next/cache";
 
 export async function GET(req) {
