@@ -2,7 +2,7 @@
 
 import { NextResponse } from "next/server";
 import { sql } from "@vercel/postgres";
-import redis from "@/lib/redis";
+import redis from "@/app/lib/redis";
 
 export async function GET(req) {
     const { searchParams } = new URL(req.url);
