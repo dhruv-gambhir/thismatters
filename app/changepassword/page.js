@@ -48,7 +48,7 @@ export default function ChangePassword() {
     <main className="min-h-screen flex flex-row">
       <SideBar />
       <div className="w-1/6"></div>
-      <div className="flex-grow p-8">
+      <div className="grow p-8">
         <h1 className="text-2xl font-bold mb-4">Change Password</h1>
         <div className="mb-4">
           <label className="block text-gray-700">Current Password</label>

@@ -25,11 +25,16 @@ export default function Home() {
         fetchPosts();
     }, [router]);
 
+    useEffect(() => {
+        if (!zIsLoggedIn) {
+            router.push("/login");
+        }
+    }, [zIsLoggedIn, router]);
+
     if (!zIsLoggedIn) {
-        router.push("/login");
         return null;
     }
-    else return (
+    return (
         <main className="min-h-screen flex flex-row">
             <SideBar />
             <div className="w-1/6" />

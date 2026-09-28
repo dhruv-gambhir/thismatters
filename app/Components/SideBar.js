@@ -11,7 +11,7 @@ export default function SideBar() {
     return (
         <main className="fixed top-0 left-0 flex flex-col min-h-screen items-center w-1/6 pt-4 border-r border-r-2 border-r-black m-2">
             <Title />
-            <nav className="flex-grow">
+            <nav className="grow">
                 <button
                     className="border-solid border-2 border-black rounded m-2 w-10/12"
                     onClick={() => router.push("/")}

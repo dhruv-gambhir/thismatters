@@ -36,7 +36,7 @@ export default function AddFriendComponent({ username }) {
 
     return (
         <main className="w-5/6 scroll-y">
-            <div className="flex flex-row border border-dotted border-black border-1 rounded m-4 p-2 relative">
+            <div className="flex flex-row border border-dotted border-black border rounded m-4 p-2 relative">
                 <Username username={username} />
                 <div className="flex flex-row absolute right-2">
                     <button
