@@ -1,10 +1,19 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import SideBar from "../Components/SideBar";
 import useStore from "../store";
 
 export default function NewPost() {
+    const { zIsLoggedIn } = useStore();
+    const router = useRouter();
+
+    useEffect(() => {
+        if (!zIsLoggedIn) {
+            router.push("/login");
+        }
+    }, [zIsLoggedIn, router]);
     const [title, setTitle] = useState("");
     const [text, setText] = useState("");
     const [images, setImages] = useState([]);
@@ -13,6 +22,8 @@ export default function NewPost() {
 
     useEffect(() => {
         // Clean up object URLs when the component is unmounted
+    if (!zIsLoggedIn) return null;
+
         return () => {
             images.forEach((image) => URL.revokeObjectURL(image.preview));
         };
@@ -91,6 +102,8 @@ export default function NewPost() {
         event.preventDefault();
         addPost();
     }
+    if (!zIsLoggedIn) return null;
+
 
     return (
         <main className="flex h-screen items-center justify-center">

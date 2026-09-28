@@ -1,17 +1,26 @@
 "use client";
 
 import SideBar from "../Components/SideBar";
+import { useEffect } from "react";
 import useStore from "../store";
 import { useRouter } from "next/navigation";
 
 export default function Settings() {
-    const { zLogout } = useStore();
+    const { zIsLoggedIn, zLogout } = useStore();
     const router = useRouter();
+
+    useEffect(() => {
+        if (!zIsLoggedIn) {
+            router.push("/login");
+        }
+    }, [zIsLoggedIn, router]);
 
     const Logout = () => {
         zLogout();
         router.push("/login");
     };
+    if (!zIsLoggedIn) return null;
+
 
 
 

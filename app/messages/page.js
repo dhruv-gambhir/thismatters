@@ -1,6 +1,19 @@
 import SideBar from "../Components/SideBar";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+import useStore from "../store";
 
 export default function Messages() {
+    const { zIsLoggedIn } = useStore();
+    const router = useRouter();
+
+    useEffect(() => {
+        if (!zIsLoggedIn) {
+            router.push("/login");
+        }
+    }, [zIsLoggedIn, router]);
+    if (!zIsLoggedIn) return null;
+
     return (
         <div className="min-h-screen flex flex-row">
             <SideBar />

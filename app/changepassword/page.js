@@ -1,9 +1,19 @@
 "use client";
 import SideBar from "../Components/SideBar";
-import { useState } from "react";
+import { useRouter } from "next/navigation";
+import useStore from "../store";
+import { useState, useEffect } from "react";
 import { changePassword } from "../Authentication/auth";
 
 export default function ChangePassword() {
+    const { zIsLoggedIn } = useStore();
+    const router = useRouter();
+
+    useEffect(() => {
+        if (!zIsLoggedIn) {
+            router.push("/login");
+        }
+    }, [zIsLoggedIn, router]);
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -31,6 +41,8 @@ export default function ChangePassword() {
       alert(`Failed to update password: ${error.message}`);
     }
   };
+    if (!zIsLoggedIn) return null;
+
 
   return (
     <main className="min-h-screen flex flex-row">

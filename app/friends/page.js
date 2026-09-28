@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 import SideBar from "../Components/SideBar";
 import SendRequestComponent from "../Components/SendRequestComponent";
@@ -9,6 +10,14 @@ import AddFriendComponent from "../Components/AddFriendComponent";
 import RemoveFriendomponent from "../Components/RemoveFriendComponent";
 
 export default function Friends() {
+    const { zIsLoggedIn } = useStore();
+    const router = useRouter();
+
+    useEffect(() => {
+        if (!zIsLoggedIn) {
+            router.push("/login");
+        }
+    }, [zIsLoggedIn, router]);
     const [myFriends, setMyFriends] = useState([]);
     const [users, setUsers] = useState([]);
     const [requests, setRequests] = useState([]);
@@ -61,6 +70,8 @@ export default function Friends() {
         const requestUsernames = new Set(
             requests.map((request) => request.sender)
         );
+    if (!zIsLoggedIn) return null;
+
 
         return (
             !friendUsernames.has(user.username) &&
@@ -68,6 +79,8 @@ export default function Friends() {
             user.username.toLowerCase().includes(friendSearch.toLowerCase())
         );
     });
+    if (!zIsLoggedIn) return null;
+
 
     return (
         <main className="min-h-screen flex flex-row">

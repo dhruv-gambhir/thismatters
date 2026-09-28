@@ -1,11 +1,20 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import SideBar from "../Components/SideBar";
 import Post from "../Components/Post";
 import useStore from "../store";
 
 export default function MyProfile() {
+    const { zIsLoggedIn } = useStore();
+    const router = useRouter();
+
+    useEffect(() => {
+        if (!zIsLoggedIn) {
+            router.push("/login");
+        }
+    }, [zIsLoggedIn, router]);
     const [posts, setPosts] = useState([]);
     const { zUsername } = useStore();
 
@@ -22,6 +31,8 @@ export default function MyProfile() {
         }
         fetchPosts();
     }, [zUsername]);
+    if (!zIsLoggedIn) return null;
+
 
     return (
         <main className="min-h-screen flex flex-row">

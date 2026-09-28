@@ -1,10 +1,19 @@
 "use client";
 
 import SideBar from "../Components/SideBar";
+import { useRouter } from "next/navigation";
 import useStore from "../store";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function EditProfile() {
+    const { zIsLoggedIn } = useStore();
+    const router = useRouter();
+
+    useEffect(() => {
+        if (!zIsLoggedIn) {
+            router.push("/login");
+        }
+    }, [zIsLoggedIn, router]);
     const { zUsername, zUpdateUsername } = useStore();
     const [username, setUsername] = useState(zUsername || "");
     const [oldUsername, setOldUsername] = useState(zUsername || "");
@@ -39,6 +48,8 @@ export default function EditProfile() {
             alert("Username cannot be empty!");
         }
     };
+    if (!zIsLoggedIn) return null;
+
 
     return (
         <main className="min-h-screen flex flex-row">
